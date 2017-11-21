@@ -1,0 +1,62 @@
+body, html {
+    margin: 0px;
+    background-color: #FFC400;
+}
+.form-control {
+  border: none;
+  border-bottom: 1px solid;
+  outline: none;
+  width: 100%;
+  display: block;
+  padding: 10px 0px;
+  font-size: 1.2em;
+}
+.btn {
+  background-color: #CA0035;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+#carrito {
+  display: none;
+}
+.contenido {
+  background-color: #FFC400;
+  margin: 0px;
+}
+.centrado {
+  text-align: center;
+}
+a, a:visited {
+  color: inherit !important;
+  text-decoration: none;
+}
+.no-margin {
+  margin: 0px;
+}
+#logo {
+  font-size: 2em;
+  font-family: 'Roboto', sans-serif;
+}
+.font {
+  margin: 0px;
+  font-family: 'Roboto', sans-serif;
+}
+.be-red {
+  background-color: #5B1646;
+}
+.white {
+  color: white;
+}
+.large-padding {
+  padding: 10px 7px;
+}
+.no-list {
+  list-style:none;
+}
+.field {
+  margin-top: 1em;
+}
