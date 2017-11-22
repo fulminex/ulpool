@@ -1,11 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Travels</h1>
+<h1>Lista de Viajes Disponibles</h1>
 
 <table>
   <thead>
     <tr>
       <th>User</th>
+      <th>Teléfono</th>
       <th>Origen</th>
       <th>Destino</th>
       <th>Precio</th>
@@ -20,11 +21,12 @@
     <% @travels.each do |travel| %>
       <tr>
         <td><%= travel.user.email %></td>
+        <td><%= travel.user.cel %></td>
         <td><%= travel.origen %></td>
         <td><%= travel.destino %></td>
         <td><%= travel.precio %></td>
         <td><%= travel.fecha %></td>
-        <td><%= travel.hora %></td>
+        <td><%= travel.hora.strftime("%H:%M") %></td>
         <td><%= travel.asientos %></td>
         <td><%= link_to 'Show', travel %></td>
         <td><%= link_to 'Edit', edit_travel_path(travel) %></td>

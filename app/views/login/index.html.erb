@@ -51,7 +51,7 @@
     <% @users.each do |user| %>
     if(email == "<%= user.email %>") {
       if(password == "<%= user.password %>"){
-        window.location.replace("http://localhost:3000/users");
+        window.location.replace("http://localhost:3000/travels");
       } else {
         alert("Usuario y/o contraseña incorrectos");
       }

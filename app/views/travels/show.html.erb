@@ -2,7 +2,7 @@
 
 <p>
   <strong>User:</strong>
-  <%= @travel.user %>
+  <%= @travel.user.email %>
 </p>
 
 <p>
@@ -27,7 +27,7 @@
 
 <p>
   <strong>Hora:</strong>
-  <%= @travel.hora %>
+  <%= @travel.hora.strftime("%H:%M") %>
 </p>
 
 <p>
