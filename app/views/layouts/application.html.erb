@@ -26,12 +26,18 @@
           <li class="col-md">
             Acerca de
           </li>
-          <li class="col-md" onclick="document.cookie = 'userid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';">
+          <li class="col-md" onclick="logout()">
             Logout
           </li>
         </ul>
       </nav>
     </header>
     <%= yield %>
+    <script>
+      function logout() {
+        document.cookie = 'userid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+        window.location.replace("http://localhost:3000");
+      }
+    </script>
   </body>
 </html>

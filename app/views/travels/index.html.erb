@@ -30,7 +30,7 @@
         <td><%= travel.hora.strftime("%H:%M") %></td>
         <td><%= travel.asientos %></td>
         <td><%= link_to 'Show', travel %></td>
-        <td><button onclick="document.getElementById('<%= travel.id %>').style.display='block'" style="width:100px;">Editar</button></td>
+        <td><button onclick="verificarEdicion('<%= travel.user.id %>','<%= travel.id %>')" style="width:100px;">Editar</button></td>
         <td data-iduser="<%= travel.user.id %>"><%= link_to 'Eliminar', travel, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
@@ -39,65 +39,16 @@
 
 <br>
 
-<% @travels.each do |travel| %>
-<!-- The Modal -->
-<div id="<%= travel.id %>" class="modal">
-  <span onclick="document.getElementById('<%= travel.id %>').style.display='none'"
-  class="close" title="Close Modal">&times;</span>
-
-  <!-- Modal Content -->
-  <form class="modal-content animate" action="/action_page.php">
-    <div class="imgcontainer">
-      <img src="/man.png" alt="Avatar" class="avatar">
-    </div>
-
-    <div class="container2">
-      <label><b>Email</b></label>
-      <input type="text" id="email<%= travel.id %>" placeholder="Ingresa tu email" name="uname" required>
-
-      <label><b>Contraseña</b></label>
-      <input type="password" id="password<%= travel.id %>" placeholder="Ingresa tu contraseña" name="psw" required>
-
-      <button type="button" onclick="verificar<%= travel.id %>()">Ingresar</button>
-      <input type="checkbox" checked="checked"> Recordarme
-    </div>
-
-    <div class="container2" style="background-color:#f1f1f1">
-      <button type="button" onclick="document.getElementById('<%= travel.id %>').style.display='none'" class="cancelbtn">Cancelar</button>
-      <span class="psw">Olvidaste tu <a href="#">contraseña?</a></span>
-    </div>
-  </form>
-</div>
-
 <script>
-function verificar<%= travel.id %>() {
-  var email = document.getElementById("email<%= travel.id %>").value;
-  var password = document.getElementById("password<%= travel.id %>").value;
-  var emailGet = "<%= travel.user.email %>"
-  var passwordGet = "<%= travel.user.password %>"
-  if (email == emailGet && password == passwordGet) {
-    window.location.replace("<%= edit_travel_path(travel) %>");
+function verificarEdicion(userid, travelid) {
+  getUserId = getCookie("userid");
+  if (userid == getUserId) {
+    window.location.replace("http://localhost:3000/travels/" + travelid + "/edit");
   } else {
-    alert("Usuario y/o contraseña incorrectos");
+    alert("No puedes editar un viaje que no es tuyo")
   }
+
 }
-
-
-
-var modal = document.getElementById("<%= travel.id %>");
-
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
-
-
-
-</script>
-
-<% end %>
-<script>
 
 $(function () {
   $("#tablaViajes").on("click","a[data-method='delete']",function (event) {
@@ -111,6 +62,6 @@ $(function () {
     }
   })
 });
-
 </script>
+
 <%= link_to 'New Travel', new_travel_path %>
