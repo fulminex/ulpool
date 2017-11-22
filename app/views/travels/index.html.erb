@@ -3,7 +3,7 @@
 
 <h1>Lista de Viajes Disponibles</h1>
 
-<table>
+<table id="tablaViajes">
   <thead>
     <tr>
       <th>User</th>
@@ -30,8 +30,8 @@
         <td><%= travel.hora.strftime("%H:%M") %></td>
         <td><%= travel.asientos %></td>
         <td><%= link_to 'Show', travel %></td>
-        <td><button onclick="document.getElementById('<%= travel.id %>').style.display='block'" style="width:100px;">Editar</button>
-        <td><%= link_to 'Destroy', travel, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><button onclick="document.getElementById('<%= travel.id %>').style.display='block'" style="width:100px;">Editar</button></td>
+        <td data-iduser="<%= travel.user.id %>"><%= link_to 'Eliminar', travel, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -82,6 +82,8 @@ function verificar<%= travel.id %>() {
   }
 }
 
+
+
 var modal = document.getElementById("<%= travel.id %>");
 
 window.onclick = function(event) {
@@ -95,6 +97,20 @@ window.onclick = function(event) {
 </script>
 
 <% end %>
+<script>
 
+$(function () {
+  $("#tablaViajes").on("click","a[data-method='delete']",function (event) {
+    event.preventDefault();
 
+    var id = getCookie("userid");
+
+    if ($(this).parent().attr("data-iduser") != id) {
+      alert("No puedes editar un viaje que no es tuyo");
+      return false;
+    }
+  })
+});
+
+</script>
 <%= link_to 'New Travel', new_travel_path %>
