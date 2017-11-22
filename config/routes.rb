@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :travels
   resources :users
   get 'login', to: 'login#index'
   root 'login#index'

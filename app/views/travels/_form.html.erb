@@ -1,0 +1,52 @@
+<%= form_for(travel) do |f| %>
+  <% if travel.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(travel.errors.count, "error") %> prohibited this travel from being saved:</h2>
+
+      <ul>
+      <% travel.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :user_id %>
+    <%= f.select :user_id, options_for_select(User.all.map{|s|[s.email, s.id]}) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :origen %>
+    <%= f.text_field :origen %>
+  </div>
+
+  <div class="field">
+    <%= f.label :destino %>
+    <%= f.text_field :destino %>
+  </div>
+
+  <div class="field">
+    <%= f.label :precio %>
+    <%= f.number_field :precio %>
+  </div>
+
+  <div class="field">
+    <%= f.label :fecha %>
+    <%= f.date_select :fecha %>
+  </div>
+
+  <div class="field">
+    <%= f.label :hora %>
+    <%= f.time_select :hora %>
+  </div>
+
+  <div class="field">
+    <%= f.label :asientos %>
+    <%= f.number_field :asientos %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
