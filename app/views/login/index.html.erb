@@ -48,17 +48,23 @@
   function verificar() {
     var email = document.getElementById("email").value;
     var password = document.getElementById("password").value;
+    var emailGet = null
+    var passwordGet = null
     <% @users.each do |user| %>
     if(email == "<%= user.email %>") {
-      if(password == "<%= user.password %>"){
+      emailGet = "<%= user.email %>"
+      passwordGet = "<%= user.password%>"
+    }
+    <%end%>
+    if (emailGet == null) {
+      alert("Usuario no encontrado");
+    } else {
+      if(password == passwordGet ){
         window.location.replace("http://localhost:3000/travels");
       } else {
         alert("Usuario y/o contraseña incorrectos");
       }
-    } else {
-      alert("El correo ingresado no existe")
     }
-    <%end%>
   }
   </script>
 
