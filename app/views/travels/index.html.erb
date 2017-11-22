@@ -1,3 +1,4 @@
+<link rel="stylesheet" type="text/css" href="/css/login.css" media="screen" />
 <p id="notice"><%= notice %></p>
 
 <h1>Lista de Viajes Disponibles</h1>
@@ -29,7 +30,7 @@
         <td><%= travel.hora.strftime("%H:%M") %></td>
         <td><%= travel.asientos %></td>
         <td><%= link_to 'Show', travel %></td>
-        <td><%= link_to 'Edit', edit_travel_path(travel) %></td>
+        <td><button onclick="document.getElementById('<%= travel.id %>').style.display='block'" style="width:100px;">Editar</button>
         <td><%= link_to 'Destroy', travel, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
@@ -37,5 +38,63 @@
 </table>
 
 <br>
+
+<% @travels.each do |travel| %>
+<!-- The Modal -->
+<div id="<%= travel.id %>" class="modal">
+  <span onclick="document.getElementById('<%= travel.id %>').style.display='none'"
+  class="close" title="Close Modal">&times;</span>
+
+  <!-- Modal Content -->
+  <form class="modal-content animate" action="/action_page.php">
+    <div class="imgcontainer">
+      <img src="/man.png" alt="Avatar" class="avatar">
+    </div>
+
+    <div class="container2">
+      <label><b>Email</b></label>
+      <input type="text" id="email<%= travel.id %>" placeholder="Ingresa tu email" name="uname" required>
+
+      <label><b>Contraseña</b></label>
+      <input type="password" id="password<%= travel.id %>" placeholder="Ingresa tu contraseña" name="psw" required>
+
+      <button type="button" onclick="verificar<%= travel.id %>()">Ingresar</button>
+      <input type="checkbox" checked="checked"> Recordarme
+    </div>
+
+    <div class="container2" style="background-color:#f1f1f1">
+      <button type="button" onclick="document.getElementById('<%= travel.id %>').style.display='none'" class="cancelbtn">Cancelar</button>
+      <span class="psw">Olvidaste tu <a href="#">contraseña?</a></span>
+    </div>
+  </form>
+</div>
+
+<script>
+function verificar<%= travel.id %>() {
+  var email = document.getElementById("email<%= travel.id %>").value;
+  var password = document.getElementById("password<%= travel.id %>").value;
+  var emailGet = "<%= travel.user.email %>"
+  var passwordGet = "<%= travel.user.password %>"
+  if (email == emailGet && password == passwordGet) {
+    window.location.replace("<%= edit_travel_path(travel) %>");
+  } else {
+    alert("Usuario y/o contraseña incorrectos");
+  }
+}
+
+var modal = document.getElementById("<%= travel.id %>");
+
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+
+
+</script>
+
+<% end %>
+
 
 <%= link_to 'New Travel', new_travel_path %>
