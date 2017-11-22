@@ -57,7 +57,7 @@ $(function () {
     var id = getCookie("userid");
 
     if ($(this).parent().attr("data-iduser") != id) {
-      alert("No puedes editar un viaje que no es tuyo");
+      alert("No puedes eliminar un viaje que no es tuyo");
       return false;
     }
   })

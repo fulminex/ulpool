@@ -20,7 +20,10 @@
           <li class="col-md">
             <%= link_to 'Inicio', root_path %>
           </li>
-          <li class="col-md" onclick="window.location.href='/users'">
+          <li class="col-md" onclick="window.location.href='/travels'">
+            Lista de Viajes
+          </li>
+          <li class="col-md" onclick="verificarAdmin()">
             Usuarios Registrados
           </li>
           <li class="col-md">
@@ -37,6 +40,14 @@
       function logout() {
         document.cookie = 'userid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
         window.location.replace("http://localhost:3000");
+      }
+      function verificarAdmin() {
+        var userid = getCookie("userid")
+        if (userid == 2) {
+          window.location.href='/users'
+        } else {
+          alert("Logueate con un usuario admin para ingresar")
+        }
       }
     </script>
   </body>
