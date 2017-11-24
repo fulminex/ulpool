@@ -43,7 +43,7 @@
 function verificarEdicion(userid, travelid) {
   getUserId = getCookie("userid");
   if (userid == getUserId) {
-    window.location.replace("http://localhost:3000/travels/" + travelid + "/edit");
+    window.location.replace("<%= @url_base %>/travels/" + travelid + "/edit");
   } else {
     alert("No puedes editar un viaje que no es tuyo")
   }

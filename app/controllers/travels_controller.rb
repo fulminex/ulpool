@@ -5,6 +5,7 @@ class TravelsController < ApplicationController
   # GET /travels.json
   def index
     @travels = Travel.all
+    @url_base = 'http://localhost:3000'
   end
 
   # GET /travels/1
